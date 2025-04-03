@@ -11,6 +11,8 @@ fun main() {
     println(nameOfFilmstar)
 
     println("showcase: ${showcaseNull()}")
+    println("questionOperator:${questionOperator()}")
+    println("questionOperator:${questionOperatorAgain()}")
 
     // var favoriteActor: String = "Sandra Oh"
     //you cant do below. null can not be a value of non-null type of String which is "Sandra Oh"
@@ -36,4 +38,18 @@ private fun showcaseNull(): Int? {
     println(n)
     n = null
     return n
+}
+
+private fun questionOperator(): Int {
+    var fishFood = 5
+    if (fishFood != null) {
+        fishFood = fishFood.inc()
+    }
+    return fishFood
+}
+// can be written using ? instead of above if and else with null check ?, after the type to indicate that a variable can be null
+private fun questionOperatorAgain(): Int? {
+    var fishFoodTreats:Int? = 6
+    fishFoodTreats = fishFoodTreats?.dec()
+    return fishFoodTreats
 }
