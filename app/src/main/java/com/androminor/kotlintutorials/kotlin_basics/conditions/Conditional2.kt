@@ -1,4 +1,4 @@
-package com.androminor.kotlintutorials.conditions
+package com.androminor.kotlintutorials.kotlin_basics.conditions
 
 fun main() {
     val trafficLightColor: Any = "Yellow"
