@@ -1,8 +1,8 @@
 (Deprecated)
 https://developer.android.com/codelabs/kotlin-bootcamp-welcome#1
 
-**But if you are still interested
-**
+But if you are still interested, see below :
+
 Kotlin Codelabs - Fundamentals
 Lesson 1: Get started
 https://developer.android.com/codelabs/kotlin-bootcamp-introduction#0
