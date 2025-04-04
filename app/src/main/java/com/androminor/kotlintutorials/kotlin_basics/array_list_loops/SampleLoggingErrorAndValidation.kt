@@ -1,9 +1,8 @@
 /**
  * Created by Varun Singh
  */
-/**
- * Created by Varun Singh
- */
+package com.androminor.kotlintutorials.kotlin_basics.array_list_loops
+
 class SampleLoggingErrorAndValidation {
     fun processSchoolList(school: List<String>): List<String> {
         return school
@@ -31,7 +30,7 @@ class SampleLoggingErrorAndValidation {
     }
 }
 
-class ArrayListsLoopss(private val listProcessor: SampleLoggingErrorAndValidation) {
+class ArrayListsLoopsSample(private val listProcessor: SampleLoggingErrorAndValidation) {
 
     fun runArrayListAndLoops(): Int {
         println("Processing started...") // Logging start
@@ -175,7 +174,7 @@ class ArrayListsLoopss(private val listProcessor: SampleLoggingErrorAndValidatio
 
 fun main() {
     val listProcessor = SampleLoggingErrorAndValidation()
-    val arrayListsLoops = ArrayListsLoopss(listProcessor)
+    val arrayListsLoops = ArrayListsLoopsSample(listProcessor)
     val result = arrayListsLoops.runArrayListAndLoops()
     println("Result from runArrayListAndLoops: $result")
 }

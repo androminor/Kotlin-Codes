@@ -1,6 +1,14 @@
+package com.androminor.kotlintutorials.kotlin_basics.array_list_loops.justmocking
 /**
  * Created by Varun Singh
- */class ClassToVerifyMockBehaviour {
+ */
+/*Ye ek aisi class hai jiske paas methods hain jo:
+
+List / Array lete hain
+Unka kuch processing karte hain (ya karne ka naatak karte hain 😄)
+Aur kuch result return karte hain*/
+
+class ClassToVerifyMockBehaviour {
 
     fun processSchoolList(schoolList: List<String>): List<String> {
         // 👶 Bacchon jaisa logic - just return modified list

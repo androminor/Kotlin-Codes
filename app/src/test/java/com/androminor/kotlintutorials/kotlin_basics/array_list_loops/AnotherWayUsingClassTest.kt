@@ -16,7 +16,55 @@ class AnotherWayUsingClassTest {
     fun setup() {
         listProcessor = mock(AnotherWayUsingClass::class.java)
         arrayListLoopers = ArrayListsLoopss(listProcessor)
+/*🔍 Question:
 
+    Mockito mein when(...) aur whenever(...) ka kya difference hai?
+    Aur kya hum when use kar sakte hain is line mein:
+
+    whenever(listProcessor.processSchoolArray(org.mockito.kotlin.any())).thenReturn(arrayOf("Shark").toString())
+    ☝️ Answer in Short:
+
+    when(...)	whenever(...)
+    Java-style	Kotlin-style
+    Works with void methods in Java	Works with suspend, Kotlin-friendly syntax
+    Needs Mockito. and proper syntax	Clean and safe for Kotlin
+    🧠 Detailed Bacchon Jaisa Samjhaav:
+
+    ✅ Jab tu Kotlin mein kaam kar raha hai (jaise abhi tu kar raha hai):
+    ➤ whenever(...) use karna safe aur recommended hai:
+    whenever(obj.method(any())).thenReturn("value")
+    Kyunki when(...) Kotlin mein keyword hai (like if, for, etc.), isliye agar tu ye likhe:
+
+    when(obj.method(any())) { ... }
+    toh compiler confuse ho jaata hai 😵
+
+    🧪 Ab tera test case dekhein:
+
+    whenever(listProcessor.processSchoolArray(org.mockito.kotlin.any()))
+        .thenReturn(arrayOf("Shark").toString())
+    Ye line agar tu when(...) se likhne ki koshish karega:
+
+    when(listProcessor.processSchoolArray(any())).thenReturn(...)
+    ➡️ Error aayegi: because when is not a function, it is a control statement in Kotlin.
+
+    🛠️ Java mein kaise hota:
+
+    when(mockedObject.someMethod()).thenReturn("value");
+    Ye Java mein chalega, kyunki Java mein when keyword nahi hota.
+
+    🔔 Final Rule of Thumb:
+
+    Situation	Use
+    Kotlin project	✅ whenever(...)
+    Java project	✅ when(...)
+    Kotlin suspend functions	✅ whenever (varna crash karega)
+    Want cleaner Kotlin code	✅ whenever FTW!
+    ✅ Tera Test Case ke liye correct syntax:
+
+    whenever(listProcessor.processSchoolArray(org.mockito.kotlin.any()))
+        .thenReturn(arrayOf("Shark").toString())
+    Bas isi tarah likhna chahiye.
+    Agar tu when(...) likhega toh error milegi, aur Mockito ka test fail ho jaayega.*/
         // 🔧 Mock the return values for each method
         whenever(listProcessor.processSchoolList(org.mockito.kotlin.any())).thenReturn(
             listOf(
@@ -65,94 +113,94 @@ class AnotherWayUsingClassTest {
 
     }
 }
-/*🎯📚 Yeh sab useful tools import kiye hain:
+    /*🎯📚 Yeh sab useful tools import kiye hain:
 
-@Before: Test se pehle koi setup karna ho toh.
-@Test: Actual test batata hai.
-Assertions: Check karne ke liye ki expected vs actual same hai ya nahi.
-mock(): Kisi class ka nakli version banane ke liye.
-verify(): Dekhne ke liye ki koi method call hua ya nahi.
-whenever(): Jab koi method call ho toh kya return karna hai — yeh set karta hai.
+    @Before: Test se pehle koi setup karna ho toh.
+    @Test: Actual test batata hai.
+    Assertions: Check karne ke liye ki expected vs actual same hai ya nahi.
+    mock(): Kisi class ka nakli version banane ke liye.
+    verify(): Dekhne ke liye ki koi method call hua ya nahi.
+    whenever(): Jab koi method call ho toh kya return karna hai — yeh set karta hai.
 
-import org.junit.Before
-import org.junit.Test
-import org.junit.jupiter.api.Assertions
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.verify
-import org.mockito.kotlin.whenever
+    import org.junit.Before
+    import org.junit.Test
+    import org.junit.jupiter.api.Assertions
+    import org.mockito.Mockito.mock
+    import org.mockito.Mockito.verify
+    import org.mockito.kotlin.whenever
 
-🧪 Test class start ho rahi hai.
-class AnotherWayUsingClassTest {
+    🧪 Test class start ho rahi hai.
+    class AnotherWayUsingClassTest {
 
-🔧 Yahan do variables declare kiye hain:
-private lateinit var listProcessor: AnotherWayUsingClass
-private lateinit var arrayListLoopers: ArrayListsLoopss
+    🔧 Yahan do variables declare kiye hain:
+    private lateinit var listProcessor: AnotherWayUsingClass
+    private lateinit var arrayListLoopers: ArrayListsLoopss
 
-listProcessor — is class ke methods ko mock karenge.
-arrayListLoopers — jiska test karna hai.
+    listProcessor — is class ke methods ko mock karenge.
+    arrayListLoopers — jiska test karna hai.
 
-🧼 setup() function test se pehle chalta hai — yeh test ke liye preparation karta hai.
-@Before
-fun setup() {
+    🧼 setup() function test se pehle chalta hai — yeh test ke liye preparation karta hai.
+    @Before
+    fun setup() {
 
-listProcessor = mock(AnotherWayUsingClass::class.java)
-🤖 AnotherWayUsingClass ka ek nakli (mock) version bana rahe hain,
-jisme methods original logic se nahi, hum jo bolenge wo hi karenge.
+    listProcessor = mock(AnotherWayUsingClass::class.java)
+    🤖 AnotherWayUsingClass ka ek nakli (mock) version bana rahe hain,
+    jisme methods original logic se nahi, hum jo bolenge wo hi karenge.
 
-arrayListLoopers = ArrayListsLoopss(listProcessor)
-🧩 Ab real class ArrayListsLoopss banayi, lekin usme listProcessor ka mock diya —
-taaki wo test mein humare control mein ho.
+    arrayListLoopers = ArrayListsLoopss(listProcessor)
+    🧩 Ab real class ArrayListsLoopss banayi, lekin usme listProcessor ka mock diya —
+    taaki wo test mein humare control mein ho.
 
-✅ Ab har method ke liye whenever ka use:
-whenever(listProcessor.processSchoolList(org.mockito.kotlin.any())).thenReturn(listOf("a", "b"))
-📋 Jab bhi processSchoolList() kisi bhi input ke saath call ho, toh list of "a", "b" return kare.
+    ✅ Ab har method ke liye whenever ka use:
+    whenever(listProcessor.processSchoolList(org.mockito.kotlin.any())).thenReturn(listOf("a", "b"))
+    📋 Jab bhi processSchoolList() kisi bhi input ke saath call ho, toh list of "a", "b" return kare.
 
-whenever(listProcessor.processSchoolArray(org.mockito.kotlin.any())).thenReturn(arrayOf("Shark").toString())
-🐟 Isme school array wala method call ho toh "Shark" return ho.
+    whenever(listProcessor.processSchoolArray(org.mockito.kotlin.any())).thenReturn(arrayOf("Shark").toString())
+    🐟 Isme school array wala method call ho toh "Shark" return ho.
 
-whenever(listProcessor.processCollegeOneList(org.mockito.kotlin.any())).thenReturn(arrayListOf("X", "Y"))
-🏫 College One ke list ke liye "X", "Y" return kare.
+    whenever(listProcessor.processCollegeOneList(org.mockito.kotlin.any())).thenReturn(arrayListOf("X", "Y"))
+    🏫 College One ke list ke liye "X", "Y" return kare.
 
-whenever(listProcessor.processCollegeTwoList(org.mockito.kotlin.any())).thenReturn(mutableListOf("London"))
-🌍 College Two ke list pe "London" return kare.
+    whenever(listProcessor.processCollegeTwoList(org.mockito.kotlin.any())).thenReturn(mutableListOf("London"))
+    🌍 College Two ke list pe "London" return kare.
 
-whenever(listProcessor.calculateFoo2(org.mockito.kotlin.any(), org.mockito.kotlin.any())).thenReturn(6)
-🔢 Dono number arrays dene par 6 return kare.
+    whenever(listProcessor.calculateFoo2(org.mockito.kotlin.any(), org.mockito.kotlin.any())).thenReturn(6)
+    🔢 Dono number arrays dene par 6 return kare.
 
-✅ Test Function:
+    ✅ Test Function:
 
-@Test
-fun `test all function inside runArrayListAndLoops`() {
-🧪 Yeh actual test function hai jiska naam batata hai ki hum kya test kar rahe hain.
+    @Test
+    fun `test all function inside runArrayListAndLoops`() {
+    🧪 Yeh actual test function hai jiska naam batata hai ki hum kya test kar rahe hain.
 
-🎁 Arrange / Given:🎒 Sab inputs ready kar liye hain jo function use karega.
-val school = listOf("Cod", "Sardine", "Mackerel", "Tuna", "Salmon")
-val collegeOne = arrayListOf("Bedfordshire", "Cardiff", "Manchester", "Liverpool")
-val collegeTwo = mutableListOf("Bedfordshire", "Cardiff", "Manchester", "Liverpool", "London")
-val schoolArray = arrayOf("shark", "whale", "dolphin")
-val numbers = intArrayOf(1, 2, 3)
-val numbers3 = intArrayOf(4, 5, 6)
-val expectedResult = 6
-
-
-⚙️ Act / When:🧠 Yeh actual method call kar rahe hain jo hum test kar rahe hain.
-val result = arrayListLoopers.runArrayListAndLoops()
+    🎁 Arrange / Given:🎒 Sab inputs ready kar liye hain jo function use karega.
+    val school = listOf("Cod", "Sardine", "Mackerel", "Tuna", "Salmon")
+    val collegeOne = arrayListOf("Bedfordshire", "Cardiff", "Manchester", "Liverpool")
+    val collegeTwo = mutableListOf("Bedfordshire", "Cardiff", "Manchester", "Liverpool", "London")
+    val schoolArray = arrayOf("shark", "whale", "dolphin")
+    val numbers = intArrayOf(1, 2, 3)
+    val numbers3 = intArrayOf(4, 5, 6)
+    val expectedResult = 6
 
 
-✅ Assert / Then:✅ Check kar rahe hain ki output jo mila (result) wo expectedResult (6) ke barabar hai ya nahi.
-Assertions.assertEquals(expectedResult, result)
+    ⚙️ Act / When:🧠 Yeh actual method call kar rahe hain jo hum test kar rahe hain.
+    val result = arrayListLoopers.runArrayListAndLoops()
 
-✅ Verify calls:🕵️‍♂️ Yeh check karta hai ki sab methods actual mein call huye the ya nahi with proper inputs.
-verify(listProcessor).processSchoolList(school)
-verify(listProcessor).processSchoolArray(schoolArray)
-verify(listProcessor).processCollegeOneList(collegeOne)
-verify(listProcessor).processCollegeTwoList(collegeTwo)
-verify(listProcessor).calculateFoo2(numbers, numbers3)
 
-✅ Final Summary (Jaisa baccha sunta hai):
-Humne ek class banayi jiska test likhna tha.
-Uske andar jo doosri class use ho rahi thi, uska dummy version banaya.
-Har method ka fixed result diya.
-Fir actual method call kiya aur dekha ki result sahi hai.
-Fir ye bhi dekha ki sab methods sahi input ke saath call huye ya nahi.
-*/
+    ✅ Assert / Then:✅ Check kar rahe hain ki output jo mila (result) wo expectedResult (6) ke barabar hai ya nahi.
+    Assertions.assertEquals(expectedResult, result)
+
+    ✅ Verify calls:🕵️‍♂️ Yeh check karta hai ki sab methods actual mein call huye the ya nahi with proper inputs.
+    verify(listProcessor).processSchoolList(school)
+    verify(listProcessor).processSchoolArray(schoolArray)
+    verify(listProcessor).processCollegeOneList(collegeOne)
+    verify(listProcessor).processCollegeTwoList(collegeTwo)
+    verify(listProcessor).calculateFoo2(numbers, numbers3)
+
+    ✅ Final Summary (Jaisa baccha sunta hai):
+    Humne ek class banayi jiska test likhna tha.
+    Uske andar jo doosri class use ho rahi thi, uska dummy version banaya.
+    Har method ka fixed result diya.
+    Fir actual method call kiya aur dekha ki result sahi hai.
+    Fir ye bhi dekha ki sab methods sahi input ke saath call huye ya nahi.
+    */
