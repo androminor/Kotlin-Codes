@@ -51,6 +51,8 @@ More about higher-order functions
 About Single Abstract Method (SAM) interfaces
 About the Kotlin Standard Library
 
+Note: please ignore `justmocking` package under `array_list_loops` as it is only for reference for more clear picture of how an actual mock test 
+should be verified
 
 
 
