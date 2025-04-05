@@ -47,9 +47,12 @@ private fun questionOperator(): Int {
     }
     return fishFood
 }
+
 // can be written using ? instead of above if and else with null check ?, after the type to indicate that a variable can be null
-private fun questionOperatorAgain(): Int? {
-    var fishFoodTreats:Int? = 6
-    fishFoodTreats = fishFoodTreats?.dec()
+private fun questionOperatorAgain(): Int {
+    var fishFoodTreats: Int? = 6
+    //elvis operator
+
+    fishFoodTreats = fishFoodTreats?.dec() ?: 0
     return fishFoodTreats
 }

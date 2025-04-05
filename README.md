@@ -54,5 +54,10 @@ About the Kotlin Standard Library
 Note: please ignore `justmocking` package under `array_list_loops` as it is only for reference for more clear picture of how an actual mock test 
 should be verified
 
+Note: In the package array_list_loops,there are some random methods i created however you can ignore them
+and follow methods from -
+https://developer.android.com/codelabs/kotlin-bootcamp-basics#0
+
+
 
 
